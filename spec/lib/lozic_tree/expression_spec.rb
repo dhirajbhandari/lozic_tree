@@ -136,12 +136,13 @@ describe LozicTree::Expression do
     end
   end
 
-  def test_hash_expression
+  def evaluate_hash_expression
     json = '{"a": 5, "b": 1}'
     expression = Expression.from_json(JSON.parse(json))
     puts "expression: #{expression.inspect}"
-    #condition = { 'a' => 5, 'b' = > 1, 'c' => 10 }
-    #puts expression.matches?(condition)
+    condition = { 'a' => 5, 'b' => 1, 'c' => 10 }
+    puts expression.matches?(condition) # => true
+    Expression.from_json(JSON.parse('{"NOT": { "a": 1}}'))).matches(condition))
   end
 
 end   
